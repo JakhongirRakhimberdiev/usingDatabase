@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:27017/myData', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/myData', { useNewUrlParser: true })
     .then(() => {
         console.log('Connected to MongoDB...');
     })
@@ -42,10 +42,8 @@ async function createBook() {
 
 async function getBook() {
 
-    const pageNumber = 3;
-
-    const books = await Book.find()
-        .limit(pageNumber)
+    const books = await Book
+        .find()
         .sort({ name: 1 })
         .select({ _id: 0 })
     //.count()
