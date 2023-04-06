@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:27017/myData')
+mongoose.connect('mongodb:localhost/myData')
     .then(() => {
         console.log('Connected to MongoDB...')
     })
@@ -29,7 +29,7 @@ async function getInventoryItems1() {
 async function getInventoryItems2() {
     return await Inventory
         .find()
-        .or([{ age: { $lt: 50 } }, { firstName: /.*l.*/i }])
+        .or([{ age: { $lte: 50 } }, { firstName: /.*l.*/i }])
         .sort({ age: -1 });
 }
 
